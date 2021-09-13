@@ -278,15 +278,12 @@ function createDragList() {
       .sort((a, b) => a.sort - b.sort)
       .map(a => a.value)
       .forEach((ele) => {
-        //console.log('ele: ',ele);
         const listItem = document.createElement('button');
         listItem.setAttribute("class","draggable");
         listItem.setAttribute('draggable', 'true');
         listItem.setAttribute("style",`background-color:${ele.color}`)
         listItem.setAttribute('id', ele.id);
         listItem.innerHTML = ele.class;
-        //console.log(listItem);
-        //listItems.push(listItem);
         draggableSection.appendChild(listItem);
       })
 }
@@ -391,9 +388,6 @@ function drop(event) {
     event.target.style.backgroundColor = window.getComputedStyle(draggableElement).backgroundColor;
     draggableElement.classList.add("dragged");
     draggableElement.setAttribute("draggable", "false");
-    //event.target.insertAdjacentHTML("afterbegin", `<i class="fas fa-${draggableElementData}"></i>`);
-    // let targetImg = questions.filter(item=>item.id==draggableElementData);
-    // event.target.insertAdjacentHTML("afterbegin",targetImg[0].emoji);
     speak(draggableElementData);
     let currentScore = parseInt(document.getElementById("score").innerText);
     document.getElementById("score").innerText = crtScore = currentScore + POINT;
@@ -406,7 +400,6 @@ function drop(event) {
 function congra(){
   speak("congratulations! You did it!");
   document.getElementById("gameContainer").style.display = "none";
-  // var parentElement = document.getElementsByClassName('scoreContainer');
   var childElement = document.getElementById('title');
   var imgElementParent = document.createElement("div");
   var imgElement = document.createElement("img");
@@ -414,8 +407,6 @@ function congra(){
   imgElement.setAttribute('width','80%');
   imgElement.setAttribute("class","congra");
   imgElementParent.appendChild(imgElement);
-  //console.log(imgElementParent)
-  //parentElement.insertBefore(imgElementParent, childElement.nextSibling);
   insertAfter(imgElementParent,childElement);
   setTimeout(()=>{
     location.reload();
@@ -430,5 +421,4 @@ function speak(message){
   var voices = window.speechSynthesis.getVoices()
   msg.voice = voices[0]
   window.speechSynthesis.speak(msg);
-
 }
